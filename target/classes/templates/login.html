@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            background: #fff;
+            width: 50%;
+            max-width: 500px;
+        }
+        .form-control {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #764ba2;
+            border: none;
+            border-radius: 10px;
+        }
+        .btn-primary:hover {
+            background-color: #5a3d7a;
+        }
+        .btn-secondary {
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+        .invalid-feedback {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card w-50">
+        <h2 class="text-center mb-4">Login</h2>
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Username(your Registered Email):</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            <a href="/register" class="btn btn-secondary btn-block">Register</a>
+            <div th:if="${error}" class="alert alert-danger mt-3">
+                <p th:text="${error}"></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

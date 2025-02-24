@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Verify OTP</title>
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            background: #fff;
+            width: 350px;
+            text-align: center;
+        }
+        .form-control {
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+        }
+        .btn-primary {
+            background-color: #ff758c;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            padding: 10px;
+        }
+        .btn-primary:hover {
+            background-color: #e64573;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2 class="mb-3">Verify OTP</h2>
+        <form th:action="@{/verify-otp}" method="post">
+            <div class="form-group">
+                <label for="otp"><i class="fas fa-key"></i> Enter OTP:</label>
+                <input type="text" class="form-control" id="otp" name="otp" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Verify OTP</button>
+            <div th:if="${error}" class="alert alert-danger mt-3">
+                <p th:text="${error}"></p>
+            </div>
+        </form>
+    </div>
+    
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

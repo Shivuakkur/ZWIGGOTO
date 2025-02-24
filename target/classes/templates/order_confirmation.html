@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Confirmation</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            background: #fff;
+            width: 450px;
+        }
+        .btn-primary {
+            background-color: #185a9d;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            padding: 10px;
+        }
+        .btn-primary:hover {
+            background-color: #154a7a;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2 class="mb-3"><i class="fas fa-check-circle text-success"></i> Order Confirmed!</h2>
+        <p>Your order has been placed successfully.</p>
+        <div class="order-summary">
+            <h4>HAPPY SHOPPING</h4>
+            <div th:each="item : ${order.items}">
+                <div class="card mb-3 p-2">
+                    <div class="card-body text-center">
+                        <h5 class="card-title" th:text="${item.product.name}">Product Name</h5>
+                        <p class="card-text">Quantity: <span th:text="${item.quantity}"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="/home" class="btn btn-primary btn-block"><i class="fas fa-home"></i> Return to Home</a>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

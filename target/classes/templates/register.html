@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            background: #fff;
+        }
+        .form-control {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #764ba2;
+            border: none;
+            border-radius: 10px;
+        }
+        .btn-primary:hover {
+            background-color: #5a3d7a;
+        }
+        .btn-secondary {
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+        .invalid-feedback {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card w-50">
+        <h2 class="text-center mb-4">Register</h2>
+        <form th:action="@{/register}" method="post" oninput="validatePasswords()">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Username(should be your valid Email):</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password:</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                <div class="invalid-feedback" id="passwordMismatch">
+                    Passwords do not match.
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="submitButton">Register</button>
+            <a href="/login" class="btn btn-secondary btn-block">Login</a>
+            <div th:if="${error}" class="alert alert-danger mt-3">
+                <p th:text="${error}"></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        function validatePasswords() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const submitButton = document.getElementById("submitButton");
+            const passwordMismatch = document.getElementById("passwordMismatch");
+
+            if (password !== confirmPassword) {
+                passwordMismatch.style.display = "block";
+                submitButton.disabled = true;
+            } else {
+                passwordMismatch.style.display = "none";
+                submitButton.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

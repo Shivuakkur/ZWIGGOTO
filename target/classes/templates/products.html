@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Products</title>
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #f4f4f4;
+        }
+        .navbar {
+            background: #0072ff;
+        }
+        .navbar-brand {
+            color: #fff !important;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.02);
+        }
+        .card-img-top {
+            height: 200px; /* Fixed height */
+            object-fit: cover; /* Ensures proper fit without distortion */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #0072ff;
+            border: none;
+            border-radius: 8px;
+        }
+        .btn-success {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+ 
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/home"><i class="fas fa-home"></i> Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav"></div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Our Products</h1>
+        <div class="row">
+            <div class="col-md-4" th:each="product : ${products}">
+                <div class="card mb-4">
+                    <img th:src="@{${product.imageUrl}}" class="card-img-top" alt="Product Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+                        <p class="card-text" th:text="${product.description}">Product Description</p>
+                        <p class="card-text"><strong>$<span th:text="${product.price}"></span></strong></p>
+                        <a th:href="@{/products/{id}(id=${product.id})}" class="btn btn-primary btn-block">View Details</a>
+                        <form th:action="@{/cart}" method="post" class="mt-2">
+                            <input type="hidden" name="productId" th:value="${product.id}">
+                            <button type="submit" class="btn btn-success btn-block"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
